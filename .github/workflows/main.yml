@@ -1,4 +1,4 @@
-name: 2D Unity Build
+name: WVN 2022 Unity Build
 
 # Triggers for {main} branch
 on: 
@@ -84,7 +84,7 @@ jobs:
         uses: finnp/create-file-action@master
         env:
           FILE_NAME: "build/WebGL/CNAME"
-          FILE_DATA: "2dunity.kbve.com"
+          FILE_DATA: "wvn2022.kbve.com"
 
 
       - name: Create nojekyll
