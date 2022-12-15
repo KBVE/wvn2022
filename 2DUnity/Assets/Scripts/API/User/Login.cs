@@ -19,7 +19,7 @@ public class Login : MonoBehaviour
     [SerializeField] private string LoginURL = "https://api.kbve.com/api/auth/local/";
     [System.Serializable]   public class UserLoginData  {   public string identifier;   public string password; }
 
-    public Button m_Login, m_Guest, m_CutScene;
+    public Button m_Login, m_Guest, m_CutScene, m_Demo;
     //?  [VAR]   -> [END]
 
     public void CutScene()
@@ -30,12 +30,22 @@ public class Login : MonoBehaviour
             SceneManager.LoadScene("CutScene", LoadSceneMode.Single);
     }
 
+
+
+    public void DemoScene()
+    {
+            PlayerData.PlayerEmail = "Guest";
+            PlayerData.PlayerJWT = "Guest";
+            PlayerData.PlayerUsername = "Guest";
+            SceneManager.LoadScene("SplashScreen", LoadSceneMode.Single);
+    }
+
     public void GuestLogin()
     {
             PlayerData.PlayerEmail = "Guest";
             PlayerData.PlayerJWT = "Guest";
             PlayerData.PlayerUsername = "Guest";
-            SceneManager.LoadScene("Game", LoadSceneMode.Single);
+            SceneManager.LoadScene("Corgi Test", LoadSceneMode.Single);
     }
     public void LoginRequest()  {   StartCoroutine(LoginEnumProcess()); }   // {Coroutine()}
     private IEnumerator LoginEnumProcess() //  [VOID]  -> {LoginEnumProcess()}
@@ -71,7 +81,7 @@ public class Login : MonoBehaviour
                 Debug.Log(PlayerPrefs.GetString("username"));
                 
                 
-                SceneManager.LoadScene("Game", LoadSceneMode.Single);
+                SceneManager.LoadScene("Corgi Test", LoadSceneMode.Single);
                 yield break;
             //! Grab the userData , prase, then set the JWT that represents the user.
             //! The JWT might not need any extra levels of security but should expire 30 days.
@@ -88,6 +98,7 @@ public class Login : MonoBehaviour
         m_Login.onClick.AddListener(LoginRequest);
         m_Guest.onClick.AddListener(GuestLogin);
         m_CutScene.onClick.AddListener(CutScene);
+        m_Demo.onClick.AddListener(DemoScene);
      }
     void Update ()  {   }
 }
